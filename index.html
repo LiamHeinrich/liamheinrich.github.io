@@ -13,16 +13,14 @@
 
   <style>
     :root{
-      --bg: #f5f1ea; /* soft cream */
-      --paper: #ffffff; /* white */
-      --ink: #2e2a26; /* espresso */
-      --muted: rgba(46,42,38,.72);
-      --accent: #8c6f5a; /* warm brown */
-      --line: rgba(46,42,38,.12);
-      --shadow: 0 12px 30px rgba(46,42,38,.10);
-      --radius: 18px;
-      --max: 1100px;
-    }
+  --bg: #0e0e0e;
+  --paper: #151515;
+  --ink: #f5f5f5;
+  --muted: #bdbdbd;
+  --accent: #7a1f1f;
+  --line: rgba(255,255,255,.08);
+  --shadow: 0 20px 40px rgba(0,0,0,.5);
+}
 
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -127,10 +125,9 @@
       display:flex; gap: 12px; flex-wrap:wrap; margin-top: 8px;
     }
     .btnPrimary{
-      background: var(--ink);
-      color: var(--bg);
-      border: 1px solid rgba(46,42,38,.2);
-      box-shadow: 0 10px 26px rgba(46,42,38,.18);
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
     }
     .btnPrimary:hover{filter: brightness(1.02)}
     .heroRight{
