@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Liam Heinrich Photography — warm, minimal family and portrait photography." />
+  <title>Liam Heinrich Photography</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #f5f1ea; /* soft cream */
+      --paper: #ffffff; /* white */
+      --ink: #2e2a26; /* espresso */
+      --muted: rgba(46,42,38,.72);
+      --accent: #8c6f5a; /* warm brown */
+      --line: rgba(46,42,38,.12);
+      --shadow: 0 12px 30px rgba(46,42,38,.10);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Header */
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(245,241,234,.78);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      font-family: Fraunces, serif;
+      font-weight: 600;
+      letter-spacing:.2px;
+      font-size: 18px;
+    }
+    .links{
+      display:flex; gap:16px; align-items:center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .links a:hover{color: var(--ink)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(140,111,90,.35);
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 6px 18px rgba(46,42,38,.08);
+      font-size: 14px;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0px)}
+
+    /* Layout */
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 18px 60px;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 10px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      min-height: 420px;
+    }
+    .heroLeft{
+      padding: 34px 30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 16px;
+    }
+    .kicker{
+      font-size: 13px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    h1{
+      font-family: Fraunces, serif;
+      font-weight: 600;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.05;
+      margin: 0;
+    }
+    .tagline{
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 48ch;
+    }
+    .heroActions{
+      display:flex; gap: 12px; flex-wrap:wrap; margin-top: 8px;
+    }
+    .btnPrimary{
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid rgba(46,42,38,.2);
+      box-shadow: 0 10px 26px rgba(46,42,38,.18);
+    }
+    .btnPrimary:hover{filter: brightness(1.02)}
+    .heroRight{
+      position:relative;
+      min-height: 280px;
+      background:
+        linear-gradient(135deg, rgba(140,111,90,.25), rgba(46,42,38,.10)),
+        url("https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1400&q=70") center/cover no-repeat;
+    }
+    .heroNote{
+      position:absolute;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: rgba(46,42,38,.75);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 26px;
+      padding: 22px 0 0;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-family: Fraunces, serif;
+      font-weight: 600;
+      font-size: 26px;
+      letter-spacing:.2px;
+    }
+    .sectionHead p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 60ch;
+    }
+
+    /* Portfolio grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .card{
+      border-radius: 16px;
+      overflow:hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 22px rgba(46,42,38,.08);
+      position:relative;
+    }
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      aspect-ratio: 4/3;
+      filter: saturate(0.98) contrast(0.98);
+    }
+    .card span{
+      position:absolute;
+      left: 12px;
+      bottom: 12px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(255,255,255,.6);
+      backdrop-filter: blur(8px);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: rgba(46,42,38,.75);
+    }
+    .c1{grid-column: span 6;}
+    .c2{grid-column: span 6;}
+    .c3{grid-column: span 4;}
+    .c4{grid-column: span 4;}
+    .c5{grid-column: span 4;}
+
+    /* About / Contact blocks */
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .panel{
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 22px rgba(46,42,38,.08);
+      padding: 18px 18px 16px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-family: Fraunces, serif;
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .panel p{
+      margin:0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .list{
+      margin:0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .list li{margin: 6px 0}
+
+    /* Contact form */
+    form{display:grid; gap: 10px; margin-top: 10px}
+    label{font-size: 13px; color: rgba(46,42,38,.78)}
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(46,42,38,.18);
+      background: rgba(245,241,234,.55);
+      font: inherit;
+      outline:none;
+    }
+    textarea{min-height: 120px; resize: vertical}
+    input:focus, textarea:focus{border-color: rgba(140,111,90,.65)}
+    .small{font-size: 12px; color: rgba(46,42,38,.62)}
+
+    /* Footer */
+    footer{
+      margin-top: 34px;
+      padding: 18px 0 0;
+      color: rgba(46,42,38,.62);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .heroGrid{grid-template-columns: 1fr}
+      .heroRight{min-height: 320px}
+      .c1,.c2{grid-column: span 12}
+      .c3,.c4,.c5{grid-column: span 12}
+      .twoCol{grid-template-columns: 1fr}
+      .links{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand">Liam Heinrich</div>
+      <div class="links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn" href="#contact">Book</a>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero" aria-label="Hero">
+      <div class="heroGrid">
+        <div class="heroLeft">
+          <div class="kicker">Photography</div>
+          <h1>Liam Heinrich Photography</h1>
+          <p class="tagline">
+            Warm, minimal photography for families and couples — honest moments, clean storytelling, and natural light.
+          </p>
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#contact">Inquire / Book</a>
+            <a class="btn" href="#work">View Portfolio</a>
+          </div>
+          <div class="small">Based in Ontario • Available for travel</div>
+        </div>
+
+        <div class="heroRight" role="img" aria-label="Warm portrait example image">
+          <div class="heroNote">
+            Tip: Replace the images with your own for instant “you” vibes. I’ll show you exactly how after it goes live.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="sectionHead">
+        <h2>Selected Work</h2>
+        <p>Keep this tight: 12–24 of your best photos. Quality wins. Always.</p>
+      </div>
+
+      <div class="grid">
+        <a class="card c1" href="#" aria-label="Couples gallery">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=70" alt="Couple portrait" />
+          <span>Couples</span>
+        </a>
+
+        <a class="card c2" href="#" aria-label="Family gallery">
+          <img src="https://images.unsplash.com/photo-1520962917968-a9b65ecdb280?auto=format&fit=crop&w=1400&q=70" alt="Family portrait" />
+          <span>Families</span>
+        </a>
+
+        <a class="card c3" href="#" aria-label="Portraits gallery">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=70" alt="Portrait" />
+          <span>Portraits</span>
+        </a>
+
+        <a class="card c4" href="#" aria-label="Lifestyle gallery">
+          <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=70" alt="Lifestyle moment" />
+          <span>Lifestyle</span>
+        </a>
+
+        <a class="card c5" href="#" aria-label="Weddings gallery">
+          <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1200&q=70" alt="Wedding moment" />
+          <span>Weddings</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="sectionHead">
+        <h2>About</h2>
+        <p>Short, warm, and human. No essay. Just trust-building.</p>
+      </div>
+
+      <div class="twoCol">
+        <div class="panel">
+          <h3>Hey, I’m Liam.</h3>
+          <p>
+            I’m a photographer focused on warm, natural moments — the kind that feel like real life,
+            but look a little elevated. I keep things simple, relaxed, and comfortable so you can just be you.
+          </p>
+          <ul class="list">
+            <li>Natural light + soft tones</li>
+            <li>Guidance when you need it</li>
+            <li>Fast, clean delivery</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>What I shoot</h3>
+          <p>
+            Couples, families, portraits, and small weddings. If you want photos that feel warm and real,
+            we’ll probably get along.
+          </p>
+          <ul class="list">
+            <li>Couples / engagements</li>
+            <li>Family sessions</li>
+            <li>Graduation + portraits</li>
+            <li>Weddings + events</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="sectionHead">
+        <h2>Contact</h2>
+        <p>Send a quick message. I’ll reply with availability + next steps.</p>
+      </div>
+
+      <div class="twoCol">
+        <div class="panel">
+          <h3>Inquiries</h3>
+          <p>
+            Email is easiest. You can also link your Instagram here once you’re ready.
+          </p>
+          <p class="small">
+            Email: <strong>hello@liamheinrich.com</strong> (replace with your real one)
+            <br />
+            Instagram: <strong>@yourhandle</strong>
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>Send a message</h3>
+          <!-- This uses Formspree (free) once you set it up. -->
+          <form action="https://formspree.io/f/yourFormID" method="POST">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@email.com" required />
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="What are you looking for? Date, location, vibe, etc." required></textarea>
+            </div>
+            <button class="btn btnPrimary" type="submit">Send</button>
+            <div class="small">Note: I’ll help you set up the free form link in 2 minutes.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Liam Heinrich Photography • liamheinrich.com
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
