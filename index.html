@@ -331,7 +331,7 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      align-items: start;
+      align-items: stretch;
     }
     .panel{
       background: var(--paper);
@@ -368,6 +368,30 @@
     .contactLeft{
       display: grid;
       gap: 12px;
+    }
+    /* --- FIX: make About + Contact columns match height --- */
+    /* Make the two columns stretch to the same height */
+    #about .twoCol,
+    #contact .twoCol{
+      align-items: stretch; /* overrides align-items: start */
+    }
+    
+    /* Contact left side becomes: top card + portrait fills remaining space */
+    #contact .contactLeft{
+      grid-template-rows: auto 1fr;
+    }
+    
+    /* Remove portrait margin (gap already handles spacing) */
+    #contact .portrait{
+      margin-top: 0;
+      height: 100%;
+    }
+    
+    /* Make the portrait image fill the available height */
+    #contact .portrait img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
     .list{
       margin:0;
