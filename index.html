@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
+ 
   <style>
     
     :root{
@@ -42,8 +42,7 @@
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    /* Header */
-    .topbar{
+   .topbar{
       position:sticky; 
       top:0; 
       z-index:20;
@@ -51,6 +50,8 @@
       background: rgba(10,10,10,.85);
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
+  
+    /* Header */
     .nav{
       max-width: var(--max);
       margin: 0 auto;
@@ -59,6 +60,15 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
+    }
+    .reveal{
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity .6s ease, transform .6s ease;
+    }
+      .reveal.isVisible{
+        opacity: 1;
+        transform: none;
     }
     .brand{
       font-family: Fraunces, serif;
@@ -203,10 +213,21 @@
       box-shadow: 0 10px 22px rgba(46,42,38,.08);
       position:relative;
       transition: transform .35s ease, box-shadow .35s ease;
+    
+      /* button reset */
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      appearance: none;
+      outline: none;
+    }
+    .card:focus-visible{
+      box-shadow: 0 0 0 2px rgba(122,31,31,.35), 0 10px 22px rgba(46,42,38,.08);
     }
     .card img{
       width:100%;
       height:auto;
+      object-fit:cover;
       display:block;
       transition: transform .5s ease;
     }
@@ -313,11 +334,48 @@
       .heroGrid{grid-template-columns: 1fr}
       .heroRight{min-height: 320px}
       .c1,.c2{grid-column: span 12}
-      .c3,.c4,.c5{grid-column: span 12}
+      .c3,.c4{grid-column: span 12}
       .twoCol{grid-template-columns: 1fr}
       .links{display:none}
     }
+    
+     /* Lightbox */
+      .lightbox{
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        z-index: 999;
+      }
+      .lightbox.isOpen{ display:flex; }
+      
+      .lightboxImg{
+        max-width: min(1100px, 92vw);
+        max-height: 88vh;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0,0,0,.6);
+      }
+      .lightboxClose{
+        position: absolute;
+        top: 16px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.22);
+        background: rgba(0,0,0,.35);
+        color: white;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .lightboxClose:hover{ filter: brightness(1.1); }
+    
   </style>
+  
 </head>
 
 <body>
@@ -360,37 +418,41 @@
       </div>
 
       <div class="grid">
-         <a class="card c1 shift-right" href="#contact" aria-label="Couples gallery">
+         <button class="card c1" type="button" aria-label="Couples gallery">
          <img src="images/couples/couples-fall-1.jpg" 
            alt="Couples fall session in North Bay"
            loading="lazy"
-           decoding="async" />
+           decoding="async" 
+          data-lightbox="true" />
           <span>Couples</span>
-        </a>
+        </button>
 
-        <a class="card c2" href="#contact" aria-label="Family gallery">
+        <button class="card c2" type="button" aria-label="Family gallery">
           <img src="images/Families/Family-2.jpg" 
             alt="Family Christian"
             loading="lazy"
-            decoding="async" />
+            decoding="async"
+            data-lightbox="true" />
           <span>Families</span>
-        </a>
+        </button>
 
-        <a class="card c3" href="#contact" aria-label="Portraits gallery">
+        <button class="card c3" type="button" aria-label="Portraits gallery">
           <img src="images/Families/Family-1-2.jpg" 
             alt="Family Christian"
             loading="lazy"
-            decoding="async" />
+            decoding="async"
+            data-lightbox="true" />
           <span>Portraits</span>
-        </a>
+        </button>
 
-        <a class="card c4" href="#contact" aria-label="Holidays gallery">
+        <button class="card c4" type="button" aria-label="Holidays gallery">
           <img src="images/Animals/parrot-christmas-2.jpg" 
             alt="Parrot"
             loading="lazy"
-            decoding="async" />
+            decoding="async"
+            data-lightbox="true" />
           <span>Holidays</span>
-        </a>
+        </button>
 
       </div>
     </section>
@@ -418,8 +480,7 @@
         <div class="panel">
           <h3>What I shoot</h3>
           <p>
-            Couples, families, portraits, and small weddings. If you want photos that feel warm and real,
-            we’ll probably get along.
+            Couples, families, and portraits — laid-back sessions and real moments.
           </p>
           <ul class="list">
             <li>Couples / engagements</li>
@@ -491,8 +552,61 @@
     </footer>
   </main>
 
+   <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightboxClose" type="button" aria-label="Close (Esc)">×</button>
+    <img class="lightboxImg" alt="">
+  </div>
+  
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  
+    // Lightbox
+    const lb = document.getElementById("lightbox");
+    const lbImg = lb.querySelector(".lightboxImg");
+    const lbClose = lb.querySelector(".lightboxClose");
+  
+    function openLightbox(src, alt){
+      lbImg.src = src;
+      lbImg.alt = alt || "";
+      lb.classList.add("isOpen");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+  
+    function closeLightbox(){
+      lb.classList.remove("isOpen");
+      lb.setAttribute("aria-hidden", "true");
+      lbImg.src = "";
+      document.body.style.overflow = "";
+    }
+  
+    document.addEventListener("click", (e) => {
+      const img = e.target.closest('img[data-lightbox="true"]');
+      if (!img) return;
+      e.preventDefault();
+      openLightbox(img.src, img.alt);
+    });
+  
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb || e.target === lbClose) closeLightbox();
+    });
+  
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeLightbox();
+    });
+    const revealEls = document.querySelectorAll(".card, .panel, .hero");
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("isVisible");
+  });
+}, { threshold: 0.15 });
+
+revealEls.forEach(el => {
+  el.classList.add("reveal");
+  io.observe(el);
+});
+</script>
 </body>
 </html>
