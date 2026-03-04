@@ -351,6 +351,18 @@
       color: var(--muted);
       font-size: 14px;
     }
+    .portrait{
+      padding:0;
+      overflow:hidden;
+    }
+    
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:16px;
+    }
     .list{
       margin:0;
       padding-left: 18px;
@@ -364,9 +376,9 @@
     label{font-size: 13px; color: rgba(245,245,245,.78)}
     input, textarea{
       width:100%;
-      padding: 12px 12px;
+      padding: 14px 16px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.06);
       color: var(--ink);
       font: inherit;
@@ -387,7 +399,7 @@
       margin-top: 34px;
       padding: 18px 0 0;
       color: rgba(245,245,245,.65);
-      font-size: 13px;
+      font-size: 18px;
       border-top: 1px solid var(--line);
 }
 
@@ -567,8 +579,13 @@
             <li>Graduation + portraits</li>
           </ul>
         </div>
+
+      <!-- NEW PHOTO PANEL -->
+      <div class="panel portrait">
+        <img src="images/liam-portrait.jpg" alt="Photographer Liam Heinrich">
       </div>
-    </section>
+    
+    </div>
 
     <section id="contact" class="section">
       <div class="sectionHead">
