@@ -129,7 +129,7 @@
     .heroRight{
       margin-top: 8px;
       position: relative;
-      padding: 0 18px 24px;
+      padding: 0 0px 24px;
       display:flex;
       justify-content:center;
     }
@@ -145,7 +145,7 @@
       pointer-events:none;
     }
     .heroRight img{
-      width:100%;
+      width:min(1300px, 95vw);
       height:auto;
       max-height:600px;
       object-fit:contain;
@@ -164,6 +164,14 @@
       font-size: clamp(32px, 4vw, 52px);
       line-height: 1.05;
       margin: 0;
+    }
+    .subBrand{
+      font-family: Fraunces, serif;
+      font-size: 14px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: rgba(245,245,245,.6);
+      margin-top: -6px;
     }
     .tagline{
       margin:0;
@@ -455,7 +463,8 @@
       <div class="heroGrid">
         <div class="heroLeft">
           <div class="kicker">Photography</div>
-          <h1>Liam Heinrich Photography</h1>
+          <h1>Liam Heinrich</h1>
+          <div class="subBrand">Photography</div>
           <p class="tagline">
             Warm, minimal photography for families and couples — honest moments, clean storytelling, and natural light.
           </p>
