@@ -114,10 +114,13 @@
     }
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1fr 1fr;
       min-height: 600px;
+      position: relative;
     }
     .heroLeft{
+      position: relative;
+      z-index: 2;
       padding: 34px 30px;
       display:flex;
       flex-direction:column;
@@ -127,8 +130,8 @@
     .heroRight{
       position:relative;
       overflow:hidden;
-      min-height:280px;
-      background: linear-gradient(135deg, rgba(140,111,90,.25), rgba(46,42,38,.10));
+      margin-left: -80px;
+      height: 100%; 
     }
     .heroRight img{
       width:100%;
@@ -337,6 +340,7 @@
       .card, .card img{ transition:none; }
     }
     @media (max-width: 900px){
+      .heroRight{margin-left: 0;}
       .heroGrid{grid-template-columns: 1fr}
       .heroRight{min-height: 320px}
       .c1,.c2{grid-column: span 12}
