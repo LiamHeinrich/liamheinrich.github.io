@@ -347,8 +347,7 @@
       font-size: 20px;
     }
     .panel p{
-      margin:0 0 12px;
-      margin-bottom: 10px;
+      margin:0 0 10px;
       line-height: 1.45;
       color: var(--muted);
       font-size: 14px;
@@ -364,7 +363,11 @@
       height:320px;
       object-fit:cover;
       display:block;
-      border-radius:16px;
+      border-radius:0px;
+    }
+    .contactLeft{
+      display: grid;
+      gap: 12px;
     }
     .list{
       margin:0;
@@ -386,16 +389,16 @@
       color: var(--ink);
       font: inherit;
       outline:none;
-}
-    input::placeholder, textarea::placeholder{
-      color: rgba(245,245,245,.55);
-}
-    input:focus, textarea:focus{
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(122,31,31,.25);
-}
-    textarea{min-height: 120px; resize: vertical}
-    .small{font-size: 12px; color: rgba(245,245,245,.70)}
+      }
+          input::placeholder, textarea::placeholder{
+            color: rgba(245,245,245,.55);
+      }
+          input:focus, textarea:focus{
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(122,31,31,.25);
+      }
+          textarea{min-height: 120px; resize: vertical}
+          .small{font-size: 12px; color: rgba(245,245,245,.70)}
 
     /* Footer */
     footer{
@@ -594,8 +597,8 @@
       </div>
 
     <div class="twoCol">
+      <div class="contactLeft">
       <!-- LEFT COLUMN (stacked) -->
-      <div>
         <div class="panel">
           <h3>Get in Touch</h3>
           <p class="small">
