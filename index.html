@@ -202,24 +202,20 @@
       border: 1px solid var(--line);
       box-shadow: 0 10px 22px rgba(46,42,38,.08);
       position:relative;
-    }
-    .card{
       transition: transform .35s ease, box-shadow .35s ease;
-    }
-
-    .card:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,.45);
     }
     .card img{
       width:100%;
       height:auto;
       display:block;
+      transition: transform .5 ease;
     }
-    /*Makes C1 and C4 wider than C2 and C3 */
-    .c1 img,
-    .c4 img{
-      aspect-ratio: 4/5;
+    .card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.45);
+    }
+    .card:hover img{
+      transform: scale(1.04);
     }
     
     .card span{
@@ -322,7 +318,7 @@
       <div class="links">
         <a href="#work">Work</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact">contact</a>
       </div>
       <a class="btn" href="#contact">Book</a>
     </div>
@@ -414,7 +410,7 @@
       </div>
     </section>
 
-    <section id="Contact" class="section">
+    <section id="contact" class="section">
       <div class="sectionHead">
         <h2>Book A Session</h2>
         <p>Send a quick message. I’ll reply with availability + next steps.</p>
