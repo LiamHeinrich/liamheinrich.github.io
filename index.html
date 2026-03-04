@@ -213,24 +213,15 @@
     }
     .card img{
       width:100%;
-      height:100%;
-      object-fit:cover;
-      aspect-ratio: 4/3;
-      filter: saturate(0.98) contrast(0.98);
+      height:auto;
+      display:block;
     }
     /*Makes C1 and C4 wider than C2 and C3 */
     .c1 img,
     .c4 img{
       aspect-ratio: 4/5;
     }
-    /*Make the Families card taller so the whole subject fits */
-    .card.c2 img{
-      aspect-ratio: 3/4;  /* taller than 4/3 */
-      object-position: 50% 20%;
-    }
-    .shift-right img {
-  object-position: 22% center;
-}
+    
     .card span{
       position:absolute;
       left: 12px;
