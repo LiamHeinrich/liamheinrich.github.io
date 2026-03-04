@@ -233,6 +233,7 @@
       border: 1px solid var(--line);
       box-shadow: 0 10px 22px rgba(46,42,38,.08);
       position:relative;
+      display:block;
       transition: transform .35s ease, box-shadow .35s ease;
     
       /* button reset */
@@ -247,8 +248,9 @@
     }
     .card img{
       width:100%;
-      height:auto;
+      height:100%;
       object-fit:cover;
+      object-position:center;
       display:block;
       transition: transform .5s ease;
     }
@@ -258,7 +260,7 @@
       border-color: rgba(255,255,255,.14);
     }
     .card:hover img{
-      transform: scale(1.04);
+      transform: scale(1.06);
     }
     
     .card span{
@@ -273,10 +275,23 @@
       font-size: 12px;
       color: rgba(245,245,245,.85);
 }
-    .c1{grid-column: span 8;}
-    .c2{grid-column: span 4;}
-    .c3{grid-column: span 4;}
-    .c4{grid-column: span 8;}
+    .c1{grid-column: span 8;
+       height:420px;
+       }
+    .c2{grid-column: span 4;
+       height:420px;
+       }
+    .c3{grid-column: span 4;
+       height:260px;
+       }
+    .c4{grid-column: span 8;
+       height:260px;
+       }
+
+    .c1 img{ object-position:center 30%; }
+    .c2 img{ object-position:center; }
+    .c3 img{ object-position:center 40%; }
+    .c4 img{ object-position:center; }
 
     /* About / Contact blocks */
     .twoCol{
@@ -352,7 +367,6 @@
       .card, .card img{ transition:none; }
     }
     @media (max-width: 900px){
-      .heroRight{margin-left: 0;}
       .heroGrid{grid-template-columns: 1fr}
       .heroRight{min-height: 320px}
       .c1,.c2{grid-column: span 12}
