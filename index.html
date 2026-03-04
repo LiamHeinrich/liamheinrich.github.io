@@ -147,7 +147,7 @@
     }
     .heroRight img{
       width:min(1300px, 95vw);
-      height:520;
+      height:520px;
       max-height:600px;
       object-fit:cover;
       object-position: 50% 50%;
@@ -352,13 +352,14 @@
       font-size: 14px;
     }
     .portrait{
+      margin-top: 12px;
       padding:0;
       overflow:hidden;
     }
     
     .portrait img{
       width:100%;
-      height:100%;
+      height:320px;
       object-fit:cover;
       display:block;
       border-radius:16px;
@@ -472,6 +473,7 @@
       <a class="btn" href="#contact">Book</a>
     </div>
   </div>
+  
 
   <main class="wrap">
     <section class="hero" aria-label="Hero">
@@ -567,6 +569,7 @@
             <li>Clean, thoughtfully edited images</li>
           </ul>
         </div>
+        
 
         <div class="panel">
           <h3>What I shoot</h3>
@@ -579,74 +582,76 @@
             <li>Graduation + portraits</li>
           </ul>
         </div>
-
-      <!-- NEW PHOTO PANEL -->
-      <div class="panel portrait">
-        <img src="images/liam-portrait.jpg" alt="Photographer Liam Heinrich">
       </div>
-    
-    </div>
-
+    </section>
+      
     <section id="contact" class="section">
       <div class="sectionHead">
         <h2>Book A Session</h2>
         <p>Send a quick message. I’ll reply with availability + next steps.</p>
       </div>
 
-      <div class="twoCol">
+    <div class="twoCol">
+      <!-- LEFT COLUMN (stacked) -->
+      <div>
         <div class="panel">
           <h3>Get in Touch</h3>
           <p class="small">
             Email: <a href="mailto:lheinrich34@gmail.com"><strong>lheinrich34@gmail.com</strong></a>
             <br />
-            Instagram: <strong>@heinrichliam</strong>
-            Based in North Bay, Ontario  
+            Instagram: <strong>@heinrichliam</strong><br />
+            Based in North Bay, Ontario<br />
             Available for family, couples, and portrait sessions.
           </p>
         </div>
-
-        <div class="panel">
-          <h3>Send a message</h3>
-          <!-- This uses Formspree. -->
-          <form action="https://formspree.io/f/xeelyakz" method="POST">
+    
+        <div class="panel portrait">
+          <img src="images/liam-portrait.jpg" alt="Photographer Liam Heinrich">
+        </div>
+      </div>
+    
+      <!-- RIGHT COLUMN -->
+      <div class="panel">
+        <h3>Send a message</h3>
+        <form action="https://formspree.io/f/xeelyakz" method="POST">
           <input type="hidden" name="_subject" value="New booking inquiry — liamheinrich.com">
           <input type="hidden" name="_next" value="https://liamheinrich.com/#contact">
-        
+    
           <div>
-            <label for="name">First Name</label>
-            <input id="name" name="name" placeholder="Your First name" required />
+            <label for="first">First Name</label>
+            <input id="first" name="first" placeholder="Your first name" required />
           </div>
-            
+    
           <div>
-            <label for="name">Last Name</label>
-            <input id="name" name="name" placeholder="Your Last name" required />
+            <label for="last">Last Name</label>
+            <input id="last" name="last" placeholder="Your last name" required />
           </div>
-        
+    
           <div>
             <label for="email">Email</label>
             <input id="email" name="email" type="email" placeholder="you@email.com" required />
           </div>
-        
+    
           <div>
             <label for="session">Session Type</label>
             <input id="session" name="session" placeholder="Family / Couples / Grad / Event" />
           </div>
-        
+    
           <div>
             <label for="date">Preferred Date</label>
             <input id="date" name="date" placeholder="Ex: April 12 2026" />
           </div>
-        
+    
           <div>
             <label for="message">Message</label>
             <textarea id="message" name="message" placeholder="Tell me what you’re looking for (location, vibe, number of people, etc.)" required></textarea>
           </div>
-        
+    
           <button class="btn btnPrimary" type="submit">Send Inquiry</button>
           <div class="small">I usually reply within 24–48 hours.</div>
-     </form>
-        </div>
+        </form>
       </div>
+    </div>
     </section>
 
     <footer>
