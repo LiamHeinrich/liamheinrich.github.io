@@ -173,6 +173,24 @@
       line-height: 1;
       cursor: pointer;
     }
+    .lightboxPrev,
+    .lightboxNext{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:50px;
+      height:50px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(0,0,0,.35);
+      color:white;
+      font-size:28px;
+      cursor:pointer;
+    }
+    
+    .lightboxPrev{ left:20px; }
+    .lightboxNext{ right:20px; }
+    
   </style>
 </head>
 
@@ -197,13 +215,16 @@
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightboxClose" type="button" aria-label="Close (Esc)">×</button>
+    <button class="lightboxClose" type="button">×</button>
+  
+    <button class="lightboxPrev" type="button">‹</button>
     <img class="lightboxImg" alt="">
+    <button class="lightboxNext" type="button">›</button>
   </div>
 
   <script>
-    // 1) Add your 22 images here (must match your filenames)
-    const images = Array.from({ length: 22 }, (_, i) => {
+    // 1) Add your 24 images here (must match your filenames)
+    const images = Array.from({ length: 24 }, (_, i) => {
       return `images/Lifestyle/jeep/jeep-${i + 1}.jpg`;
     });
 
@@ -219,10 +240,13 @@
     const lb = document.getElementById("lightbox");
     const lbImg = lb.querySelector(".lightboxImg");
     const lbClose = lb.querySelector(".lightboxClose");
+    let currentIndex = 0;
+    const nextBtn = document.querySelector(".lightboxNext");
+    const prevBtn = document.querySelector(".lightboxPrev");
 
-    function openLightbox(src, alt){
-      lbImg.src = src;
-      lbImg.alt = alt || "";
+    function openLightbox(index){
+      currentIndex = index;
+      lbImg.src = images[index];
       lb.classList.add("isOpen");
       lb.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -239,16 +263,69 @@
     gallery.addEventListener("click", (e) => {
       const img = e.target.closest("img");
       if (!img) return;
-      openLightbox(img.src, img.alt);
+    
+      const allImages = [...gallery.querySelectorAll("img")];
+      const index = allImages.indexOf(img);
+    
+      openLightbox(index);
     });
 
+    function showNext(){
+      currentIndex = (currentIndex + 1) % images.length;
+      lbImg.src = images[currentIndex];
+    }
+    
+    function showPrev(){
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      lbImg.src = images[currentIndex];
+    }
+
+    nextBtn.addEventListener("click", (e) => { 
+      e.stopPropagation();
+      showNext();
+    });
+    
+    prevBtn.addEventListener("click", (e) => { 
+      e.stopPropagation();
+      showPrev();
+    });
+    
+    document.addEventListener("keydown", (e) => {
+      if (!lb.classList.contains("isOpen")) return;
+    
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    });
     lb.addEventListener("click", (e) => {
       if (e.target === lb || e.target === lbClose) closeLightbox();
     });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeLightbox();
-    });
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    lb.addEventListener("touchstart", (e) => {
+      if (!lb.classList.contains("isOpen")) return;
+      const t = e.touches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+    }, { passive: true });
+    
+    lb.addEventListener("touchend", (e) => {
+      if (!lb.classList.contains("isOpen")) return;
+      const t = e.changedTouches[0];
+    
+      const dx = t.clientX - touchStartX;
+      const dy = t.clientY - touchStartY;
+    
+      // ignore mostly-vertical swipes (so scrolling doesn't trigger)
+      if (Math.abs(dy) > Math.abs(dx)) return;
+    
+      // minimum swipe distance
+      if (Math.abs(dx) < 40) return;
+    
+      if (dx < 0) showNext();   // swipe left -> next
+      else showPrev();          // swipe right -> previous
+    }, { passive: true });
   </script>
 </body>
 </html>
