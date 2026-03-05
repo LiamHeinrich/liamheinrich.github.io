@@ -250,6 +250,9 @@
       lb.classList.add("isOpen");
       lb.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+
+      preload((currentIndex + 1) % images.length);
+      preload((currentIndex - 1 + images.length) % images.length);
     }
 
     function closeLightbox(){
@@ -270,14 +273,21 @@
       openLightbox(index);
     });
 
+    function preload(i){
+      const img = new Image();
+      img.src = images[i];
+    }
+    
     function showNext(){
       currentIndex = (currentIndex + 1) % images.length;
       lbImg.src = images[currentIndex];
+      preload((currentIndex + 1) % images.length);
     }
     
     function showPrev(){
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       lbImg.src = images[currentIndex];
+      preload((currentIndex - 1 + images.length) % images.length);
     }
 
     nextBtn.addEventListener("click", (e) => { 
@@ -326,6 +336,12 @@
       if (dx < 0) showNext();   // swipe left -> next
       else showPrev();          // swipe right -> previous
     }, { passive: true });
+
+    lbClose.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+    
   </script>
 </body>
 </html>
