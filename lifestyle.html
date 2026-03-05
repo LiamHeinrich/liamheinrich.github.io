@@ -154,6 +154,9 @@
     .lightbox.isOpen{ display:flex; }
 
     .lightboxImg{
+      user-select:none;
+      -webkit-user-drag:none;
+      touch-action: pan-y;
       max-width: min(1100px, 92vw);
       max-height: 88vh;
       border-radius: 16px;
