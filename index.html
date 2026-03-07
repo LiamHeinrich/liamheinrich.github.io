@@ -84,10 +84,14 @@
         transform: none;
     }
     .brand{
-      font-family: Fraunces, serif;
-      font-weight: 600;
-      letter-spacing:.2px;
-      font-size: 18px;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .brand img{
+      display: block;
+      height: 42px;
+      width: auto;
     }
     .links{
       display:flex; gap:16px; align-items:center;
@@ -507,7 +511,9 @@
 <body>
   <div class="topbar">
     <div class="nav">
-      <div class="brand">Liam Heinrich</div>
+      <a class="brand" href="index.html" aria-label="Liam Heinrich Photography home">
+        <img src="images/PNG/2.png" alt="Heinrich Photography logo">
+      </a>
       <div class="links">
         <a href="#work">Work</a>
         <a href="#about">About</a>
@@ -553,7 +559,7 @@
          <img src="images/couples/couples-1.jpg" 
            alt="Couples fall session in North Bay"
            loading="lazy"
-           decoding="async" 
+           decoding="async" />
           <span>Couples</span>
         </a>
 
